@@ -1,7 +1,3 @@
-#include <iostream>
-
-using namespace std;
-
 
 template<class T>
 class Node{
@@ -14,6 +10,28 @@ class Node{
 		Node<T>* getNext();
 		void setNext(Node<T>* hook);
 };
+
+
+template<class T>
+class List{
+	private:
+		Node<T>* head;
+		int numElements;
+		int maxElements;
+	public:
+		List(int maxelements);
+		void insert(Node<T>& neo);
+		Node<T> pop();
+		int length();
+};
+
+//
+//
+//
+// Implementation of the class methods are below
+//
+//
+//
 
 template<class T>
 Node<T>::Node(T inp){
@@ -35,20 +53,6 @@ template<class T>
 void Node<T>::setNext(Node* hook){
 	next = hook;
 }
-
-template<class T>
-class List{
-	private:
-		Node<T>* head;
-		int numElements;
-		int maxElements;
-	public:
-		List(int maxelements);
-		void insert(Node<T>& neo);
-		Node<T> pop();
-		int length();
-};
-
 template<class T>
 List<T>::List(int maxelements){
 	head = NULL;
