@@ -2,65 +2,77 @@
 
 using namespace std;
 
+
+template<class T>
 class Node{
 	private:
-		int value;
-		Node* next;
+		T value;
+		Node<T>* next;
 	public:
-		Node(int inp=0);
-		int getValue();
-		Node* getNext();
-		void setNext(Node* hook);
+		Node(T inp=0);
+		T getValue();
+		Node<T>* getNext();
+		void setNext(Node<T>* hook);
 };
 
-Node::Node(int inp){
+template<class T>
+Node<T>::Node(T inp){
 	value = inp;
 	next = NULL;
 }
 
-int Node::getValue(){
+template<class T>
+T Node<T>::getValue(){
 	return value;
 }
 
-Node* Node::getNext(){
+template<class T>
+Node<T>* Node<T>::getNext(){
 	return next;
 }
 
-void Node::setNext(Node* hook){
+template<class T>
+void Node<T>::setNext(Node* hook){
 	next = hook;
 }
 
+template<class T>
 class List{
 	private:
-		Node* head;
+		Node<T>* head;
 		int numElements;
 		int maxElements;
 	public:
 		List(int maxelements);
-		void insert(Node& neo);
-		Node pop();
+		void insert(Node<T>& neo);
+		Node<T> pop();
 		int length();
 };
 
-List::List(int maxelements){
+template<class T>
+List<T>::List(int maxelements){
 	head = NULL;
 	maxElements = maxelements;
 	numElements = 0;
 }
 
-void List::insert(Node& neo){
+template<class T>
+void List<T>::insert(Node<T>& neo){
 	neo.setNext(head);
 	head = &neo;
 	numElements++;
 }
 
-Node List::pop(){
-	Node* out = head;
+template<class T>
+Node<T> List<T>::pop(){
+	Node<T>* out = head;
 	if(head != NULL)
 		head = head->getNext();
 	numElements--;
 	return *out;
 }
-int List::length(){
+
+template<class T>
+int List<T>::length(){
 	return numElements;
 }
